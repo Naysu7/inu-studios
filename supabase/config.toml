@@ -1,0 +1,2 @@
+[functions.admin-moderate]
+verify_jwt = false
