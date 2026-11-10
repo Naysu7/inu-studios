@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Gamepad2 } from 'lucide-react';
+import { Menu, X, Gamepad2, Trophy } from 'lucide-react';
 import { DATA } from '@/data';
+import AchievementsModal from '@/components/AchievementsModal';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#hero');
+  const [achOpen, setAchOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -51,30 +53,48 @@ export default function Navbar() {
             </span>
           </button>
 
-          <ul className="hidden items-center gap-1 lg:flex">
-            {DATA.nav.map((n) => (
-              <li key={n.href}>
-                <button
-                  onClick={() => go(n.href)}
-                  className={`rounded-md px-3 py-1.5 font-mono text-xs uppercase tracking-widest transition-colors ${
-                    active === n.href
-                      ? 'text-neon-cyan'
-                      : 'text-zinc-400 hover:text-white'
-                  }`}
-                >
-                  {n.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden items-center gap-1 lg:flex">
+            <ul className="flex items-center gap-1">
+              {DATA.nav.map((n) => (
+                <li key={n.href}>
+                  <button
+                    onClick={() => go(n.href)}
+                    className={`rounded-md px-3 py-1.5 font-mono text-xs uppercase tracking-widest transition-colors ${
+                      active === n.href
+                        ? 'text-neon-cyan'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    {n.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setAchOpen(true)}
+              className="ml-2 inline-flex items-center gap-1.5 rounded-lg border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-neon-cyan transition-colors hover:bg-neon-cyan/20"
+            >
+              <Trophy className="h-3.5 w-3.5" />
+              Achievements
+            </button>
+          </div>
 
-          <button
-            className="text-zinc-200 lg:hidden"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          <div className="flex items-center gap-3 lg:hidden">
+            <button
+              onClick={() => setAchOpen(true)}
+              aria-label="Open achievements"
+              className="text-neon-cyan"
+            >
+              <Trophy className="h-5 w-5" />
+            </button>
+            <button
+              className="text-zinc-200"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
         </nav>
       </motion.header>
 
@@ -110,10 +130,25 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: DATA.nav.length * 0.05 }}
+              >
+                <button
+                  onClick={() => { setOpen(false); setAchOpen(true); }}
+                  className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-display text-2xl font-bold uppercase text-neon-cyan hover:bg-white/5"
+                >
+                  <Trophy className="h-5 w-5" />
+                  Achievements
+                </button>
+              </motion.li>
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AchievementsModal open={achOpen} onClose={() => setAchOpen(false)} />
     </>
   );
 }
