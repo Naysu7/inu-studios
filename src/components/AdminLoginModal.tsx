@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Lock, Loader2, ShieldCheck, AlertCircle, LogOut } from 'lucide-react';
-import {
-  verifyAdminPasskey,
-  saveAdminSession,
-  clearAdminSession,
-} from '@/lib/supabase';
+import { X, Lock, Loader2, ShieldCheck, AlertCircle, LogOut, Eye, EyeOff } from 'lucide-react';
+import { saveAdminSession, clearAdminSession } from '@/lib/supabase';
 
 export default function AdminLoginModal({
   open,
@@ -17,6 +13,7 @@ export default function AdminLoginModal({
   onAuthChange: (isAdmin: boolean) => void;
 }) {
   const [passkey, setPasskey] = useState('');
+  const [showPass, setShowPass] = useState(false);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState(false);
 
@@ -24,6 +21,7 @@ export default function AdminLoginModal({
     if (open) {
       setPasskey('');
       setError(false);
+      setShowPass(false);
     }
   }, [open]);
 
@@ -41,7 +39,8 @@ export default function AdminLoginModal({
     if (!passkey.trim()) return;
     setChecking(true);
     setError(false);
-    const ok = await verifyAdminPasskey(passkey.trim());
+    const adminPass = (import.meta.env.VITE_ADMIN_PASSWORD || 'INUYASHa7').trim();
+    const ok = passkey.trim() === adminPass;
     setChecking(false);
     if (ok) {
       saveAdminSession(passkey.trim());
@@ -107,8 +106,9 @@ export default function AdminLoginModal({
                   <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-zinc-400">
                     Admin Passkey
                   </label>
+                  <div className="relative">
                   <input
-                    type="password"
+                    type={showPass ? 'text' : 'password'}
                     value={passkey}
                     onChange={(e) => {
                       setPasskey(e.target.value);
@@ -116,8 +116,17 @@ export default function AdminLoginModal({
                     }}
                     autoFocus
                     placeholder="Enter owner passkey"
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-zinc-600 focus:border-neon-magenta/60"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 pr-11 text-sm text-white outline-none transition-colors placeholder:text-zinc-600 focus:border-neon-magenta/60"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPass((s) => !s)}
+                    aria-label={showPass ? 'Hide passkey' : 'Show passkey'}
+                    className="absolute right-2.5 top-1/2 grid -translate-y-1/2 h-7 w-7 place-items-center rounded-md text-zinc-500 transition-colors hover:text-neon-cyan"
+                  >
+                    {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
                 </div>
 
                 <AnimatePresence>
