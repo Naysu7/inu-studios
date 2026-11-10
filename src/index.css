@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    cursor: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-950 text-zinc-100 font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(255, 43, 214, 0.10), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 0% 80%, rgba(34, 211, 238, 0.10), transparent 60%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.3);
+    color: #fff;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08080c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #22d3ee, #ff2bd6);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-hover {
+    @apply transition-colors duration-300 hover:border-neon-cyan/50;
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 8px rgba(34, 211, 238, 0.6),
+      0 0 24px rgba(34, 211, 238, 0.3);
+  }
+
+  .neon-text-mag {
+    text-shadow:
+      0 0 8px rgba(255, 43, 214, 0.6),
+      0 0 24px rgba(255, 43, 214, 0.3);
+  }
+
+  .glitch {
+    position: relative;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .glitch:hover::before {
+    opacity: 0.85;
+    color: #22d3ee;
+    transform: translate(-2px, -1px);
+    clip-path: inset(0 0 55% 0);
+    animation: glitchTop 0.45s steps(2) infinite;
+  }
+  .glitch:hover::after {
+    opacity: 0.85;
+    color: #ff2bd6;
+    transform: translate(2px, 1px);
+    clip-path: inset(55% 0 0 0);
+    animation: glitchBot 0.45s steps(2) infinite;
+  }
+}
+
+@keyframes glitchTop {
+  0% { transform: translate(-2px, -1px); }
+  50% { transform: translate(2px, 1px); }
+  100% { transform: translate(-2px, -1px); }
+}
+@keyframes glitchBot {
+  0% { transform: translate(2px, 1px); }
+  50% { transform: translate(-2px, -1px); }
+  100% { transform: translate(2px, 1px); }
+}
+
+/* Custom cursor */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  margin-top: -11px;
+  border: 1.5px solid #22d3ee;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.7);
+}
+.cursor-dot.is-active {
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-color: #ff2bd6;
+  background: rgba(255, 43, 214, 0.12);
+  box-shadow: 0 0 18px rgba(255, 43, 214, 0.6);
+}
+.cursor-crosshair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  margin-top: -13px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+}
+.cursor-crosshair::before,
+.cursor-crosshair::after {
+  content: '';
+  position: absolute;
+  background: #22d3ee;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.9);
+}
+.cursor-crosshair::before {
+  left: 50%;
+  top: 0;
+  width: 1.5px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+.cursor-crosshair::after {
+  top: 50%;
+  left: 0;
+  height: 1.5px;
+  width: 100%;
+  transform: translateY(-50%);
+}
+.cursor-trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: screen;
+}
+
+@media (hover: none) {
+  * { cursor: auto; }
+  .cursor-dot, .cursor-crosshair, .cursor-trail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
