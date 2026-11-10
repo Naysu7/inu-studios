@@ -10,8 +10,8 @@ export const DATA = {
   social: {
     gmail: 'https://mail.google.com/mail/?view=cm&fs=1&to=inustudios@gmail.com',
     email: 'niceecalner05@gmail.com',
-    facebook: 'https://facebook.com/inustudios',
-    instagram: 'https://instagram.com/inustudios',
+    facebook: 'https://www.facebook.com/nice.ecalner/',
+    instagram: 'https://www.instagram.com/itsnayss.e?rpxt=eXk0eG92cTRyMTVq',
   },
 
   hero: {

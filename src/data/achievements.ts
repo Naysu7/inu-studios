@@ -10,10 +10,24 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     id: 'ach-1',
-    title: 'First Game Released',
+    title: 'First Game To Present to Mr Solon Chen',
     description:
-      'Shipped Endless Awakening — a 2D survival roguelike — marking the transition from student projects to published indie titles.',
-    date: '2023',
+      'Langit Lupa is a 3D Multiplayer game where you and your friends try to catch each other just like in the old days',
+    date: '2025',
+    images: [
+      '/solo chen 1.jpg',
+      '/solo chen 2.jpg',
+      '/solo chen 3.jpg',
+      '/solo chen 4.jpg'
+    ],
+    badge: 'Milestone',
+  },
+  {
+    id: 'ach-2',
+    title: 'Coming Soon',
+    description:
+      'Coming Soon.',
+    date: 'N/A',
     images: [
       '/images/achievements/placeholder1.png',
       '/images/achievements/placeholder2.png',
@@ -23,65 +37,51 @@ export const achievements: Achievement[] = [
     badge: 'Milestone',
   },
   {
-    id: 'ach-2',
-    title: 'Multiplayer Netcode',
-    description:
-      'Implemented Unity Netcode for Langit, Lupa, Impiyerno — a 3-player Filipino mythology brawler spanning heaven, earth, and hell.',
-    date: '2024',
-    images: [
-      '/images/achievements/placeholder1.png',
-      '/images/achievements/placeholder2.png',
-      '/images/achievements/placeholder3.png',
-      '/images/achievements/placeholder4.png',
-    ],
-    badge: 'Technical',
-  },
-  {
     id: 'ach-3',
-    title: 'QA Database Lead',
+    title: 'Coming Soon',
     description:
-      'Built and maintained a structured bug-tracking database for EthrA (2D MMORPG), covering repro reports, severity triage, and regression passes.',
-    date: '2024',
+      'Coming Soon.',
+    date: 'N/A',
     images: [
       '/images/achievements/placeholder1.png',
       '/images/achievements/placeholder2.png',
       '/images/achievements/placeholder3.png',
     ],
-    badge: 'QA',
+    badge: 'Milestone',
   },
   {
     id: 'ach-4',
-    title: 'Mobile Launch',
+    title: 'Coming Soon',
     description:
-      'Brought The Tower to mobile platforms — adapting controls, UI, and performance for touch-screen gameplay.',
-    date: '2024',
+      'Coming Soon',
+    date: 'N/A',
     images: [
       '/images/achievements/placeholder1.png',
       '/images/achievements/placeholder2.png',
       '/images/achievements/placeholder3.png',
       '/images/achievements/placeholder4.png',
     ],
-    badge: 'Release',
+    badge: 'Milestone',
   },
   {
     id: 'ach-5',
-    title: 'BSEMC Specialized',
+    title: 'Coming Soon',
     description:
-      'Completed the Entertainment and Multimedia Computing program specializing in Game Development at BISCAST.',
-    date: '2024',
+      'Coming Soon',
+    date: 'N/A',
     images: [
       '/images/achievements/placeholder1.png',
       '/images/achievements/placeholder2.png',
       '/images/achievements/placeholder3.png',
     ],
-    badge: 'Education',
+    badge: 'Milestone',
   },
   {
     id: 'ach-6',
-    title: '6 Titles Shipped',
+    title: 'Coming Soon',
     description:
-      'Reached six published games on itch.io spanning roguelikes, brawlers, tower defense, and puzzle genres.',
-    date: '2025',
+      'Coming Soon',
+    date: 'N/A',
     images: [
       '/images/achievements/placeholder1.png',
       '/images/achievements/placeholder2.png',
