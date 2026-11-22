@@ -166,7 +166,7 @@ export const DATA = {
       role: 'QA Playtester',
       desc: 'Placeholder slot for upcoming game QA testing, bug reproduction, and gameplay balance documentation.',
       tags: ['Playtest', 'Bug Report', 'QA'],
-      image: '/qa-placeholder-3.png',
+      image: '/qa-slot-3.png',
       footer: 'Upcoming QA · Slot 03',
     },
     {
@@ -174,7 +174,7 @@ export const DATA = {
       role: 'QA Playtester',
       desc: 'Placeholder slot for upcoming game QA testing, edge-case discovery, and performance verification.',
       tags: ['QA Testing', 'Regression', 'Feedback'],
-      image: '/qa-placeholder-4.png',
+      image: '/qa-slot-4.png',
       footer: 'Upcoming QA · Slot 04',
     },
   ],

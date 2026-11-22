@@ -14,7 +14,7 @@ function QaImage({ src, alt }: { src: string; alt: string }) {
     return (
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-br from-neon-magenta/15 via-ink-900 to-neon-cyan/10 transition-transform duration-500 group-hover:scale-105"
+        className="absolute inset-0 bg-gradient-to-br from-neon-magenta/15 via-ink-900 to-neon-cyan/10 opacity-45 transition-opacity duration-500 group-hover:opacity-60"
       />
     );
   }
@@ -25,7 +25,7 @@ function QaImage({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       loading="lazy"
       onError={() => setFailed(true)}
-      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      className="absolute inset-0 h-full w-full object-cover opacity-45 transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
     />
   );
 }
@@ -48,7 +48,7 @@ export default function QA() {
                   {/* full-bleed background image */}
                   <div className="absolute inset-0">
                     <QaImage src={q.image} alt={q.title} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/80 to-[#0a0a0f]/40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/70 to-transparent" />
                   </div>
 
                   {/* content */}
